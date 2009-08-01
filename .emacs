@@ -22,3 +22,11 @@
 ;; javascript mode
 (autoload 'javascript-mode "javascript" nil t)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+
+;; enable terminal colors in 'M-x shell'
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;; Java Annotations
+(require 'java-mode-indent-annotations)
+(add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
