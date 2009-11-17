@@ -4,6 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/slime-2009-06-02/contrib/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
+(add-to-list 'load-path "~/.emacs.d/haskell-mode/")
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -30,6 +31,18 @@
 (autoload 'lua-mode "lua-mode" "Lua editing mode" t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 
+;; php mode
+(autoload 'php-mode "php-mode" "PHP editing mode" t)
+(add-to-list 'auto-mode-alist '("\\.php[34]?\\'\\|\\.phtml\\'" . php-mode))
+
+;; haskell mode modules
+(autoload 'haskell-mode "haskell-mode" "Haskell editing mode" t)
+(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(autoload 'turn-on-haskell-doc-mode "haskell-doc" nil t)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-font-lock)
+
 ;; enable terminal colors in 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -37,3 +50,6 @@
 ;; Java Annotations
 (require 'java-mode-indent-annotations)
 (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
+
+;; show column number
+(column-number-mode 1)
