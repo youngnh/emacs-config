@@ -37,3 +37,7 @@
 ;; Java Annotations
 (require 'java-mode-indent-annotations)
 (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
+
+;; xml file extensions
+(add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.wsdl$" . xml-mode))
