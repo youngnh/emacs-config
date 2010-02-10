@@ -13,6 +13,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; column numbers
+(column-number-mode 1)
+
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
