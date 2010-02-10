@@ -6,6 +6,8 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
 (add-to-list 'load-path "~/.emacs.d/gnus-5.10.10/lisp")
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
+(add-to-list 'load-path "~/.emacs.d/clojure-mode/")
+(add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -21,6 +23,16 @@
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
+
+;; clojure mode
+(require 'clojure-mode)
+
+;; swank clojure
+(setq swank-clojure-jar-path "~/clojure/clojure.jar"
+      swank-clojure-extra-classpaths '("~/.emacs.d/swank-clojure/src/main/clojure"))
+
+
+(require 'swank-clojure-autoload)
 
 ;; slime
 (setq inferior-lisp-program "/usr/bin/sbcl")
