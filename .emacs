@@ -28,14 +28,16 @@
 (require 'clojure-mode)
 
 ;; swank clojure
-(setq swank-clojure-jar-path "~/clojure/clojure.jar"
-      swank-clojure-extra-classpaths '("~/.emacs.d/swank-clojure/src/main/clojure"))
+(setq swank-clojure-java-path "/usr/java/jdk/bin/java"
+      swank-clojure-jar-path "~/clojure/clojure.jar"
+      swank-clojure-extra-classpaths '("~/.emacs.d/swank-clojure/src/main/clojure"
+				       "~/clojure-contrib/clojure-contrib.jar"))
 
 
 (require 'swank-clojure-autoload)
 
 ;; slime
-(setq inferior-lisp-program "/usr/bin/sbcl")
+;;(setq inferior-lisp-program "/usr/bin/sbcl")
 (require 'slime)
 (slime-setup '(slime-repl slime-editing-commands))
 
