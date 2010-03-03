@@ -37,7 +37,8 @@
 (require 'swank-clojure-autoload)
 
 ;; slime
-;;(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-lisp-implementations 
+      '((sbcl ("/usr/bin/sbcl"))))
 (require 'slime)
 (slime-setup '(slime-repl slime-editing-commands))
 
