@@ -640,9 +640,14 @@ should be checked out in the `clojure-src-root' directory."
   "Add a classpath to Clojure and refresh slime-lisp-implementations"
   (interactive "GPath: ")
   (push path swank-clojure-extra-classpaths)
+  (refresh-clojure-classpath))
+
+(defun refresh-clojure-classpath ()
+  "Reset Clojure classpath incorporating current value of swank-clojure-extra-classpaths"
+  (interactive)
   (setq slime-lisp-implementations
-        (cons `(clojure ,(swank-clojure-cmd) :init swank-clojure-init)
-              (remove-if #'(lambda (x) (eq (car x) 'clojure)) slime-lisp-implementations))))
+	(cons `(clojure ,(swank-clojure-cmd) :init swank-clojure-init)
+	      (remove-if #'(lambda (x) (eq (car x) 'clojure)) slime-lisp-implementations))))
 
 (add-hook 'slime-connected-hook 'clojure-enable-slime-on-existing-buffers)
 
