@@ -4,6 +4,8 @@
 (add-to-list 'load-path "~/.emacs.d/slime/contrib/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
+(add-to-list 'load-path "~/.emacs.d/gnus-5.10.10/lisp")
+(add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -44,3 +46,18 @@
 ;; xml file extensions
 (add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.wsdl$" . xml-mode))
+
+;; Jabber
+(require 'jabber-autoloads)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(jabber-account-list (quote (("youngnh@gmail.com/emacs" (:network-server . "talk.google.com") (:connection-type . ssl)) ("nyoung@revelytix.com/emacs" (:network-server . "talk.google.com") (:connection-type . ssl))))))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
