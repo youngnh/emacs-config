@@ -23,7 +23,7 @@
 ;; slime
 (setq inferior-lisp-program "/usr/bin/sbcl")
 (require 'slime)
-(slime-setup '(slime-editing-commands))
+(slime-setup '(slime-repl slime-editing-commands))
 
 ;; javascript mode
 (autoload 'javascript-mode "javascript" nil t)
