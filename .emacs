@@ -89,3 +89,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+
+;; MediaWiki editing
+(setq mediawiki-url "https://revelytix.servehttp.com:553/wiki/Main_Page")
+(require 'mediawiki)
