@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
 (add-to-list 'load-path "~/.emacs.d/clojure-mode/")
 (add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
+(add-to-list 'load-path "~/.emacs.d/haskell-mode/")
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -49,6 +50,18 @@
 ;; lua mode
 (autoload 'lua-mode "lua-mode" "Lua editing mode" t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+
+;; php mode
+(autoload 'php-mode "php-mode" "PHP editing mode" t)
+(add-to-list 'auto-mode-alist '("\\.php[34]?\\'\\|\\.phtml\\'" . php-mode))
+
+;; haskell mode modules
+(autoload 'haskell-mode "haskell-mode" "Haskell editing mode" t)
+(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(autoload 'turn-on-haskell-doc-mode "haskell-doc" nil t)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-font-lock)
 
 ;; enable terminal colors in 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
