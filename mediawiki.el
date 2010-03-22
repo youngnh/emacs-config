@@ -139,35 +139,30 @@ the base URI of the wiki engine as well as group and page name.")
 	(page-timestamp nil)
 	(doc-timestamp nil)
 	(proc nil)
-	(headers '(("Connection" "close")))
-	(userAndPassword nil))
-	(when (string-match mediawiki-password-URI-pattern page-uri)
-	  (setq userAndPassword (base64-encode-string
-				 (match-string 1 page-uri)))
-	  (setq page-uri (replace-regexp-in-string
-			  "http://.*?:.*?@" "http://" page-uri))
-	  (add-to-list 'headers (list "Authorization"
-				      (concat "Basic " userAndPassword))))
-	(set 'proc
-	     (http-get page-uri         ; Source URI
-		       headers		; headers
-		       nil		; ?
-		       http-ver		; nil -> 1.0
-		       bufname          ; output buffer
-		       content-type)	) ; typically nil
-	(emacs-wiki-mode)
-	(set-buffer-file-coding-system 'utf-8)
-	;;(set-fill-column pmwiki-fill-column)
-	(make-local-variable 'mediawiki-page-timestamp)
-	(setq mediawiki-page-timestamp nil)
-	(set (make-local-variable 'mediawiki-page-title) title)
-	(set (make-local-variable 'mediawiki-page-uri) page-uri)
-	(set (make-local-variable 'mediawiki-encoded-password) userAndPassword)
-	(unless goto-end
-	  (while (string-equal (process-status proc) "open") (sleep-for 0.050))
-	  (goto-char 1))
-	(not-modified)
-	proc))
+	(headers '(("Connection" . "close")))
+	(userAndPassword (base64-encode-string "NYoung:zer79zqC")))
+    (add-to-list 'headers (cons "Authorization"
+				(concat "Basic " userAndPassword)))
+    (set 'proc
+	 (http-get page-uri         ; Source URI
+		   headers		; headers
+		   nil		; ?
+		   http-ver		; nil -> 1.0
+		   bufname          ; output buffer
+		   content-type)	) ; typically nil
+    (emacs-wiki-mode)
+    (set-buffer-file-coding-system 'utf-8)
+    ;;(set-fill-column pmwiki-fill-column)
+    (make-local-variable 'mediawiki-page-timestamp)
+    (setq mediawiki-page-timestamp nil)
+    (set (make-local-variable 'mediawiki-page-title) title)
+    (set (make-local-variable 'mediawiki-page-uri) page-uri)
+    (set (make-local-variable 'mediawiki-encoded-password) userAndPassword)
+    (unless goto-end
+      (while (string-equal (process-status proc) "open") (sleep-for 0.050))
+      (goto-char 1))
+    (not-modified)
+    proc))
 
 (defun mediawiki-save (&optional summary)
   (interactive "sSummary: ")

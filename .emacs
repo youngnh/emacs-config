@@ -9,6 +9,8 @@
 (add-to-list 'load-path "~/.emacs.d/clojure-mode/")
 (add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
 (add-to-list 'load-path "~/.emacs.d/haskell-mode/")
+(add-to-list 'load-path "~/.emacs.d/emacs-wiki-2.72/")
+
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -91,5 +93,6 @@
  )
 
 ;; MediaWiki editing
-(setq mediawiki-url "https://revelytix.servehttp.com:553/wiki/Main_Page")
+(require 'emacs-wiki)
+(setq mediawiki-url "https://revelytix.servehttp.com:553/w/index.php")
 (require 'mediawiki)
