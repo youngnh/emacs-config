@@ -69,6 +69,7 @@
 
 (require 'hexl)
 (require 'http-cookies)
+(require 'tls)
 
 (defvar http-get-version "1.0.15")
 
@@ -357,7 +358,7 @@ use `decode-coding-region' and get the coding system to use from
   (setq version (or version 1.0))
   (let* (host dir file port proc buf command start-line (message-headers "") )
     (unless (string-match
-	     "http://\\([^/:]+\\)\\(:\\([0-9]+\\)\\)?/\\(.*/\\)?\\([^:]*\\)"
+	     "https?://\\([^/:]+\\)\\(:\\([0-9]+\\)\\)?/\\(.*/\\)?\\([^:]*\\)"
              url)
       (error "Cannot parse URL %s." url))
     (unless bufname
@@ -369,10 +370,15 @@ use `decode-coding-region' and get the coding system to use from
 	  dir (or (match-string 4 url) "")
 	  file (or (match-string 5 url) "")
 	  buf (get-buffer-create bufname)
-	  proc (open-network-stream
-                (concat "HTTP GET " url) buf
-                (if http-proxy-host http-proxy-host host)
-                (if http-proxy-port http-proxy-port port) ))
+	  proc (if (string-match "^http:" url)
+		   (open-network-stream
+		    (concat "HTTP GET " url) buf
+		    (if http-proxy-host http-proxy-host host)
+		    (if http-proxy-port http-proxy-port port))
+		 (open-tls-stream
+		  (concat "HTTP GET " url) buf
+		  (if http-proxy-host http-proxy-host host)
+		  (if http-proxy-port http-proxy-port port))) )
     (if sentinel
 	(set-buffer buf)
       (switch-to-buffer buf))
