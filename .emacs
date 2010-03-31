@@ -13,6 +13,7 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
+(add-to-list 'load-path "~/.emacs.d/haskell-mode/")
 (add-to-list 'load-path "~/.emacs.d/emacs-wiki-2.72/")
 
 
