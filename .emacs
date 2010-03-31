@@ -10,15 +10,9 @@
 
 ;; setup load path
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/slime/")
-(add-to-list 'load-path "~/.emacs.d/slime/contrib/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
-(add-to-list 'load-path "~/.emacs.d/gnus-5.10.10/lisp")
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
-(add-to-list 'load-path "~/.emacs.d/clojure-mode/")
-(add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
-(add-to-list 'load-path "~/.emacs.d/haskell-mode/")
 (add-to-list 'load-path "~/.emacs.d/emacs-wiki-2.72/")
 
 
@@ -36,24 +30,6 @@
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
-
-;; clojure mode
-(require 'clojure-mode)
-
-;; swank clojure
-(setq swank-clojure-java-path "/usr/java/jdk/bin/java"
-      swank-clojure-jar-path "~/clojure/clojure.jar"
-      swank-clojure-extra-classpaths '("~/.emacs.d/swank-clojure/src/main/clojure"
-				       "~/clojure-contrib/clojure-contrib.jar"))
-
-
-(require 'swank-clojure-autoload)
-
-;; slime
-(setq slime-lisp-implementations 
-      '((sbcl ("/usr/bin/sbcl"))))
-(require 'slime)
-(slime-setup '(slime-repl slime-editing-commands))
 
 ;; javascript mode
 (autoload 'javascript-mode "javascript" nil t)
@@ -78,6 +54,9 @@
 ;; enable terminal colors in 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;; Swank-Clojure Jars
+(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/.emacs.d/swank-clojure/src/"))
 
 ;; Java Annotations
 (require 'java-mode-indent-annotations)
