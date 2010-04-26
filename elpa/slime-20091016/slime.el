@@ -1197,6 +1197,7 @@
  (defvar inferior-lisp-program "lisp" 
    "*Program name for invoking an inferior Lisp with for Inferior Lisp mode.")
 
+;;;###autoload
  (defvar slime-lisp-implementations nil
    "*A list of known Lisp implementations.
  The list should have the form: 

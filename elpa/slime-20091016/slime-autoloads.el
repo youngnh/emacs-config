@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (slime-hyperspec-lookup slime-connect slime slime-mode
-;;;;;;  slime-lisp-mode-hook) "slime" "slime.el" (19379 27988))
+;;;;;;  slime-lisp-mode-hook) "slime" "slime.el" (19413 56940))
 ;;; Generated autoloads from slime.el
 
 (defvar slime-lisp-modes '(lisp-mode))
@@ -53,6 +53,24 @@ Not documented
 
 \(fn &optional ARG)" t nil)
 
+(defvar slime-lisp-implementations nil "\
+*A list of known Lisp implementations.
+ The list should have the form: 
+   ((NAME (PROGRAM PROGRAM-ARGS...) &key INIT CODING-SYSTEM ENV) ...)
+
+ NAME is a symbol for the implementation.
+ PROGRAM and PROGRAM-ARGS are strings used to start the Lisp process.
+ INIT is a function that should return a string to load and start
+   Swank. The function will be called with the PORT-FILENAME and ENCODING as
+   arguments.  INIT defaults to `slime-init-command'. 
+ CODING-SYSTEM a symbol for the coding system. The default is 
+   slime-net-coding-system
+ ENV environment variables for the subprocess (see `process-environment').
+
+ Here's an example: 
+  ((cmucl (\"/opt/cmucl/bin/lisp\" \"-quiet\") :init slime-init-command)
+   (acl (\"acl7\") :coding-system emacs-mule))")
+
 (autoload 'slime "slime" "\
 Start an inferior^_superior Lisp and connect to its Swank server.
 
@@ -70,7 +88,7 @@ A wrapper for `hyperspec-lookup'
 
 ;;;***
 
-;;;### (autoloads nil nil ("slime-pkg.el") (19379 27988 874816))
+;;;### (autoloads nil nil ("slime-pkg.el") (19413 56942 213591))
 
 ;;;***
 

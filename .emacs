@@ -59,6 +59,9 @@
 ;; Swank-Clojure Jars
 (setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/.emacs.d/swank-clojure/src/"))
 
+;; add SBCL to slime lisp implementations
+(add-to-list 'slime-lisp-implementations '(sbcl ("/usr/bin/sbcl")))
+
 ;; Java Annotations
 (require 'java-mode-indent-annotations)
 (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
