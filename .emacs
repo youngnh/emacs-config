@@ -1,21 +1,11 @@
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
-;; setup load path
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
-(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/themes/")
-(add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0")
+(add-to-list 'load-path "~/.emacs.d/color-theme/")
+(add-to-list 'load-path "~/.emacs.d/color-theme/themes/")
 (add-to-list 'load-path "~/.emacs.d/haskell-mode/")
-(add-to-list 'load-path "~/.emacs.d/emacs-wiki-2.72/")
+(add-to-list 'load-path "~/.emacs.d/mmm-mode/")
 
+;; turn off audible bell
+(setq visible-bell t)
 
 ;; don't show splash
 (setq inhibit-splash-screen t)
@@ -31,6 +21,11 @@
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
+
+;; multiple major modes
+(require 'mmm-auto)
+(setq mmm-global-mode 'maybe)
+(setq mmm-submode-decoration-level 0)
 
 ;; javascript mode
 (autoload 'javascript-mode "javascript" nil t)
@@ -57,7 +52,7 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; Swank-Clojure Jars
-(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/.emacs.d/swank-clojure/src/"))
+(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
 
 ;; add SBCL to slime lisp implementations
 ;; (add-to-list 'slime-lisp-implementations '(sbcl ("/usr/bin/sbcl")))
@@ -70,22 +65,5 @@
 (add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.wsdl$" . xml-mode))
 
-;; Jabber
-(require 'jabber-autoloads)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(jabber-account-list (quote (("youngnh@gmail.com/emacs" (:network-server . "talk.google.com") (:connection-type . ssl)) ("nyoung@revelytix.com/emacs" (:network-server . "talk.google.com") (:connection-type . ssl))))))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
-;; MediaWiki editing
-(require 'emacs-wiki)
-(setq mediawiki-url "https://revelytix.servehttp.com:553/w/index.php")
-(require 'mediawiki)
+;; Org Mode settings
+(setq org-log-done 'time)
