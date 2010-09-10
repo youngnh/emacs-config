@@ -232,6 +232,16 @@ Deprecated: use `paredit-mode' instead."
                  "(define-key keymap [frob]| 'frobnicate)")
                 ("; [Bar.|"
                  "; [Bar.]|"))
+   ("{"         paredit-open-brace
+                ("(a b |c d)"
+		 "(a b {|} c d)") 
+		("(foo \"bar |baz \" quux)"
+		 "(foo \"bar {|baz\" quux)"))
+   ("}"         paredit-close-brace
+                ("{:a 1\  }"
+		 "{:a 1}\ ")
+		("; {Baz.|")
+		("; {Baz.}|"))
    ("\""        paredit-doublequote
                 ("(frob grovel |full lexical)"
                  "(frob grovel \"|\" full lexical)")
@@ -264,7 +274,7 @@ Deprecated: use `paredit-mode' instead."
                  "    (foo bar)\n    ;; |\n    (baz quux)")
                 ("|(defun hello-world ...)"
                  ";;; |\n(defun hello-world ...)"))
-
+
    ("C-j"       paredit-newline
                 ("(let ((n (frobbotz))) |(display (+ n 1)\nport))"
                  ,(concat "(let ((n (frobbotz)))"
