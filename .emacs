@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (add-to-list 'load-path "~/.emacs.d/color-theme/themes/")
+(add-to-list 'load-path "~/.emacs.d/slime/")
 (add-to-list 'load-path "~/.emacs.d/haskell-mode/")
 (add-to-list 'load-path "~/.emacs.d/mmm-mode/")
 
@@ -51,11 +52,16 @@
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;; slime
+(require 'slime)
+(slime-setup '(slime-fancy))
+
 ;; clojure mode
 (require 'clojure-mode)
+(require 'clojure-test-mode)
 
 ;; Swank-Clojure Jars
-(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
+;; (setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
 
 ;; add SBCL to slime lisp implementations
 ;; (add-to-list 'slime-lisp-implementations '(sbcl ("/usr/bin/sbcl")))
