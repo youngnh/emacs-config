@@ -58,13 +58,36 @@
 
 ;; clojure mode
 (require 'clojure-mode)
-(require 'clojure-test-mode)
+;;(require 'clojure-test-mode)
 
 ;; Swank-Clojure Jars
-;; (setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
+(setq clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
+
+(defun clojure-concat-paths (paths)
+  (mapconcat 'identity (mapcar 'expand-file-name paths) path-separator))
+
+(defun clojure-init (file encoding)
+  (concat
+   "(require 'swank.loader)\n\n"
+   "(swank.loader/init)\n\n"
+   "(require 'swank.swank)\n\n"
+   (when (boundp 'slime-protocol-version)
+     (format "(swank.swank/ignore-protocol-version %S)\n\n"
+             slime-protocol-version))
+   ;; Hacked in call to get the localhost address to work around a bug
+   ;; where the REPL doesn't pop up until the user presses Enter.
+   "(do (.. java.net.InetAddress getLocalHost getHostAddress) nil)"
+   (format "(swank.swank/start-server %S :encoding %S)\n\n"
+           (expand-file-name file)
+           (format "%s" (slime-coding-system-cl-name encoding)))))
 
 ;; add SBCL to slime lisp implementations
-;; (add-to-list 'slime-lisp-implementations '(sbcl ("/usr/bin/sbcl")))
+(add-to-list 'slime-lisp-implementations '(sbcl ("/usr/bin/sbcl")))
+
+;; Clojure is default slime lisp implementation
+(require 'assoc)
+(setq clojure-cmd (list "java" "-classpath" (clojure-concat-paths clojure-classpath) "clojure.main" "--repl"))
+(aput 'slime-lisp-implementations 'clojure (list clojure-cmd :init 'clojure-init))
 
 ;; Java Annotations
 (require 'java-mode-indent-annotations)
