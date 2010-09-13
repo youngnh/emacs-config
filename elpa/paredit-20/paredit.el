@@ -213,25 +213,30 @@ Deprecated: use `paredit-mode' instead."
                  "(a b (|) c d)")
                 ("(foo \"bar |baz\" quux)"
                  "(foo \"bar (|baz\" quux)"))
-   (")"         paredit-close-parenthesis-and-newline
+   (")"         paredit-close-parenthesis
+                ("(a b |c   )" "(a b c)|")
+                ("; Hello,| world!"
+                 "; Hello,)| world!"))
+   ("M-)"       paredit-close-parenthesis-and-newline
                 ("(defun f (x|  ))"
                  "(defun f (x)\n  |)")
                 ("; (Foo.|"
                  "; (Foo.)|"))
-   ("M-)"       paredit-close-parenthesis
-                ("(a b |c   )" "(a b c)|")
-                ("; Hello,| world!"
-                 "; Hello,)| world!"))
    ("["         paredit-open-bracket
                 ("(a b |c d)"
                  "(a b [|] c d)")
                 ("(foo \"bar |baz\" quux)"
                  "(foo \"bar [baz\" quux)"))
-   ("]"         paredit-close-bracket
+   ("]"         paredit-close-bracket-and-newline
                 ("(define-key keymap [frob|  ] 'frobnicate)"
                  "(define-key keymap [frob]| 'frobnicate)")
                 ("; [Bar.|"
                  "; [Bar.]|"))
+   ("M-]"       paredit-close-bracket
+                ("(let [x 10| ]\n)"
+		 "(let [x 10]\n |)")
+		("; [Bar.|"
+		 "; [Bar.]|"))
    ("{"         paredit-open-brace
                 ("(a b |c d)"
 		 "(a b {|} c d)") 
