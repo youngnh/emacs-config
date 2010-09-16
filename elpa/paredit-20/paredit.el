@@ -227,12 +227,7 @@ Deprecated: use `paredit-mode' instead."
                  "(a b [|] c d)")
                 ("(foo \"bar |baz\" quux)"
                  "(foo \"bar [baz\" quux)"))
-   ("]"         paredit-close-bracket-and-newline
-                ("(define-key keymap [frob|  ] 'frobnicate)"
-                 "(define-key keymap [frob]| 'frobnicate)")
-                ("; [Bar.|"
-                 "; [Bar.]|"))
-   ("M-]"       paredit-close-bracket
+   ("]"       paredit-close-bracket
                 ("(let [x 10| ]\n)"
 		 "(let [x 10]\n |)")
 		("; [Bar.|"
