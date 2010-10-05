@@ -1,0 +1,1 @@
+(define-package "haskell-mode" "2.8.0" "Major mode for editing Haskell source code" (quote nil))
