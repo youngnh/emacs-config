@@ -61,6 +61,22 @@
 
 (setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
 
+;; Save Action
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  ;; can't do this because commas are whitespace in clojure-mode (even ;; in string literals)
+  ;;(delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+(defun save-and-iwb ()
+  (interactive)
+  (iwb)
+  (save-buffer))
+
+(global-set-key (kbd "<f8>") 'save-and-iwb)
+
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
@@ -70,3 +86,4 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
