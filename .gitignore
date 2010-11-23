@@ -1,2 +1,4 @@
 games/*
 *.elc
+tramp
+session.[0-9a-f]*
