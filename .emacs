@@ -51,31 +51,26 @@
 ;; Org Mode settings
 (setq org-log-done 'time)
 
-;; paredit in lisp modes
-(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
-(add-hook 'lisp-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'clojure-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
-
-(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
-
 ;; Save Action
 (defun iwb ()
   "indent whole buffer"
   (interactive)
   ;; can't do this because commas are whitespace in clojure-mode (even ;; in string literals)
-  ;;(delete-trailing-whitespace)
+  (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defun save-and-iwb ()
-  (interactive)
-  (iwb)
-  (save-buffer))
+;; paredit in lisp modes
+(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+(add-hook 'lisp-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'clojure-mode-hook (lambda ()
+                               (paredit-mode +1)
+                               (add-hook 'local-write-file-hooks 'iwb)))
+(add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
 
-(global-set-key (kbd "<f8>") 'save-and-iwb)
+(setq swank-clojure-classpath '("~/clojure/clojure.jar" "~/clojure-contrib/clojure-contrib.jar" "~/swank-clojure/swank-clojure.jar"))
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
