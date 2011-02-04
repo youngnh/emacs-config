@@ -114,7 +114,6 @@ Clojure to load that file."
 (defvar clojure-mode-syntax-table
   (let ((table (copy-syntax-table emacs-lisp-mode-syntax-table)))
     (modify-syntax-entry ?~ "'   " table)
-    (modify-syntax-entry ?, "    " table)
     (modify-syntax-entry ?\{ "(}" table)
     (modify-syntax-entry ?\} "){" table)
     (modify-syntax-entry ?\[ "(]" table)
