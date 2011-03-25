@@ -16,6 +16,9 @@
 ;; column numbers
 (column-number-mode 1)
 
+;; don't wrap lines
+(setq-default truncate-lines t)
+
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
