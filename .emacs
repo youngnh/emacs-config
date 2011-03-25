@@ -51,6 +51,10 @@
 (add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.wsdl$" . xml-mode))
 
+;; Markdown Mode
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+
 ;; Org Mode settings
 (setq org-log-done 'time)
 
