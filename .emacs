@@ -19,6 +19,9 @@
 ;; don't wrap lines
 (setq-default truncate-lines t)
 
+;; spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;; colors
 (require 'color-theme-wombat)
 (color-theme-wombat)
