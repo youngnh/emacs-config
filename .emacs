@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (add-to-list 'load-path "~/.emacs.d/color-theme/themes/")
+(add-to-list 'load-path "~/.emacs.d/sml-mode/")
 
 ;; turn off audible bell
 (setq visible-bell t)
@@ -43,6 +44,11 @@
 (add-to-list 'auto-mode-alist '("\\.php[34]?\\'\\|\\.phtml\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.module\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
+
+;; SML mode
+(autoload 'sml-mode "sml-mode" "Major mode for editing SML." t)
+(autoload 'run-sml "sml-proc" "Run an inferior SML process." t)
+(add-to-list 'auto-mode-alist '("\\.\\(sml\\|sig\\)\\'" . sml-mode))
 
 ;; enable terminal colors in 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
