@@ -50,6 +50,11 @@
 (autoload 'run-sml "sml-proc" "Run an inferior SML process." t)
 (add-to-list 'auto-mode-alist '("\\.\\(sml\\|sig\\)\\'" . sml-mode))
 
+;; n3 mode
+(autoload 'n3-mode "n3-mode" "Major mode for editing OWL or N3 files" t)
+(add-hook 'n3-mode-hook 'turn-on-font-lock)
+(add-to-list 'auto-mode-alist '("\\.\\(n3\\|owl|ttl\\)\\'" . n3-mode))
+
 ;; enable terminal colors in 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
