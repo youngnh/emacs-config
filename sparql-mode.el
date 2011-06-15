@@ -1,5 +1,10 @@
 (require 'font-lock)
 
+(defvar sparql-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?' "\"" table)
+    table))
+
 (defconst sparql-font-lock-keywords
   (list "\\<BASE\\>"
         "\\<PREFIX\\>"
@@ -25,6 +30,8 @@
 (defun sparql-mode ()
   "Major mode for editing SPARQL queries"
   (interactive)
+
+  (set-syntax-table sparql-mode-syntax-table)
 
   (set (make-local-variable 'font-lock-defaults)
        (list sparql-font-lock-keywords nil t))
