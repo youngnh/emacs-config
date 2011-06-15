@@ -23,6 +23,7 @@
 
 (defconst sparql-font-lock-keywords
   (list (list sparql-keyword-re 1 font-lock-keyword-face)
+        (list "\\(\\?\\|\\$\\)\\w+" 0 font-lock-variable-name-face t)
         (cons sparql-constant-re font-lock-constant-face)
         (list "<[^<>]*>" 0 font-lock-constant-face t)))
 
