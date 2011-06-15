@@ -6,29 +6,19 @@
     (modify-syntax-entry ?# "<" table)
     (modify-syntax-entry ?\n ">" table)
     (modify-syntax-entry ?\r ">" table)
+    (modify-syntax-entry ?< "(" table)
+    (modify-syntax-entry ?> ")" table)
     table))
 
+(defconst sparql-keyword-re
+  (regexp-opt '("BASE" "PREFIX" "SELECT" "DISTINCT" "REDUCED"
+                "AS" "WHERE" "SERVICE" "GROUP" "BY"
+                "HAVING" "ORDER" "ASC" "DESC" "LIMIT"
+                "OFFSET" "BINDINGS" "OPTIONAL" "FILTER") 'words)
+  "Font lock keywords.")
+
 (defconst sparql-font-lock-keywords
-  (list "\\<BASE\\>"
-        "\\<PREFIX\\>"
-        "\\<SELECT\\>"
-        "\\<DISTINCT\\>"
-        "\\<REDUCED\\>"
-        "\\<AS\\>"
-        "\\<WHERE\\>"
-        "\\<SERVICE\\>"
-        "\\<GROUP\\>"
-        "\\<BY\\>"
-        "\\<HAVING\\>"
-        "\\<ORDER\\>"
-        "\\<ASC\\>"
-        "\\<DESC\\>"
-        "\\<LIMIT\\>"
-        "\\<OFFSET\\>"
-        "\\<BINDINGS\\>"
-        "\\<OPTIONAL\\>"
-        "\\<FILTER\\>")
-  "Font lock keywords")
+  (list (list sparql-keyword-re 1 font-lock-keyword-face)))
 
 (defun sparql-mode ()
   "Major mode for editing SPARQL queries"
