@@ -106,6 +106,9 @@
 ;; Note when an Org Mode TODO was completed
 (setq org-log-done 'time)
 
+;; don't turn on annoying Flyspell, I know how to spell
+(remove-hook 'text-mode-hook 'turn-on-flyspell)
+
 (defun slime-send-shell-dwim (arg)
   "Send the appropriate forms to be evaluated"
   (interactive "P")
