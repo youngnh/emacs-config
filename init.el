@@ -6,7 +6,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch clojure-mode groovy-mode)
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch clojure-mode groovy-mode yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -161,6 +161,16 @@
                   (other-window 1)))))
 
 (add-hook 'clojure-mode-hook '(lambda () (define-key clojure-mode-map [f7] 'slime-send-shell-dwim)))
+
+;; YASnippets - http://capitaomorte.github.io/yasnippet/
+(require 'yasnippet)
+(yas-global-mode 1)
+
+; Develop and keep personal snippets under ~/emacs.d/mysnippets
+(setq yas/root-directory "~/.emacs.d/mysnippets")
+
+;; Load the snippets
+(yas/load-directory yas/root-directory)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: templaterenderer
+# key: templaterenderer
+# --
+goog.provide('$1')
+
+goog.require('ftf.view.render.TemplateRenderer');
+
+/**
+ * @constructor
+ * @extends {ftf.view.render.TemplateRenderer}
+ */
+${1:narwal} = function() {
+   goog.base(this, $2);
+};
+goog.inherits($1, ftf.view.render.TemplateRenderer);
+goog.addSingletonGetter($1);
