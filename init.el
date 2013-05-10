@@ -48,7 +48,9 @@
 ;; and 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super))
+  (setq mac-option-modifier 'super)
+
+  (setq ispell-program-name "/usr/local/bin/ispell"))
 
 ;; clojure-mode indentation
 (add-hook 'clojure-mode-hook
