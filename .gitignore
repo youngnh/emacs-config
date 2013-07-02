@@ -1,3 +1,6 @@
 elpa
 .smex-items
 places
+eshell/*
+tramp
+url/*
