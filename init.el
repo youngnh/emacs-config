@@ -6,7 +6,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch clojure-mode groovy-mode yasnippet)
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch clojure-mode groovy-mode haskell-mode yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
