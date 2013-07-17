@@ -111,6 +111,9 @@
 ;; don't turn on annoying Flyspell, I know how to spell
 (remove-hook 'text-mode-hook 'turn-on-flyspell)
 
+;; Browse Kill Ring
+(require 'browse-kill-ring)
+
 (defun slime-send-shell-dwim (arg)
   "Send the appropriate forms to be evaluated"
   (interactive "P")
