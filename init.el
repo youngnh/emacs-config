@@ -22,7 +22,7 @@
 (remove-hook 'clojure-mode-hook 'esk-pretty-fn)
 
 ;; Load Wombat theme
-(load-theme 'wombat)
+(load-theme 'adwaita)
 
 ;; so I can more easily tell where I am in a file
 (when window-system
