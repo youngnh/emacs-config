@@ -4,3 +4,5 @@ places
 eshell/*
 tramp
 url/*
+auto-save-list/
+backups/

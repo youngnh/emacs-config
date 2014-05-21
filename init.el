@@ -6,7 +6,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch clojure-mode groovy-mode haskell-mode yasnippet)
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl scratch cider groovy-mode haskell-mode scala-mode yasnippet yaml-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -15,6 +15,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; kill underlining, auto-fill, "pretty" symbols
+(remove-hook 'prog-mode-hook 'esk-add-watchwords)
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 (remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -39,6 +40,9 @@
 
 ;; column numbers
 (setq column-number-mode t)
+
+;; line numbers
+(global-linum-mode)
 
 ;; alter what is displayed in a dired buffer
 (setq dired-listing-switches "-alh")
@@ -81,6 +85,12 @@
 
 ;; Clojure mode when opening ClojureScript files
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
+
+;; YAML mode file extensions
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode)) ;; Salt SLS files are yaml
 
 ;; don't reindent when I hit enter, I may want to preserve my manual formatting
 (define-key lisp-mode-shared-map (kbd "RET") 'newline-and-indent)
